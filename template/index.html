@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        body{
+            background-color: palegreen ;
+        }
+        .header{
+            background-color: aqua;
+            width: 100%;
+            text-align: center;
+            border-radius: 1ch;
+        }
+        .left-side{
+            float: left;
+            width: 30%;
+            border-radius: 1ch;
+            background-color: aqua;
+        }
+        .right-side{
+            float: right; 
+            width: 68%;
+            border-radius: 1ch;
+            background-color: aqua;
+            height: 500px;
+        }
+        #title{
+            border-radius: 5px;
+            text-align: center;
+            margin: 1ch;
+            width: 94%;
+        }
+        #description{
+            border-radius: 5px;
+            text-align: center;
+            margin: 1ch;
+            width: 94%;
+            height: 100px;
+        }
+        #time{
+            border-radius: 5px;
+            text-align: center;
+            margin: 1ch;
+            width: 94%;
+        }
+        h4{
+            margin: 20px 30px;
+        }
+        b{
+            margin: 20px 30px;
+            word-wrap: break-word;
+            width: 100px;
+        }
+        i{
+            margin: 20px 30px;
+        }
+        u{
+            float: right;
+            margin-right: 20px;
+        }
+        .items{
+            background-color:red;
+            color: snow;
+            margin: 20px;
+            border-radius: 10px;
+        }
+        .scroll{
+            overflow-y: scroll;
+            height: 400px;
+            width: 98%;
+        }
+        #saveditem{
+            color: red;
+            text-align: center;
+            margin-left: 165px;
+        }
+        .delete{
+            float: right;
+            margin: 1.1px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <header class="header">
+            <h1>_TO_DO_</h1>
+        </header>
+    </div>
+    <div class="left-side">
+        <form method="POST" action="">
+            {% csrf_token %}
+        <input type="text" name="title" id="title" placeholder="Title">
+        <input type="text" name="description" id="description" placeholder="Description">
+        <input type="text" name="time" id="time" placeholder="Time">
+        <button type="submit" style="margin-left:160px">Save</button>
+        </form>
+        <span id='saveditem'>
+        {% for msg in messages %}
+        {{msg}}
+        {% endfor %}
+        </span>
+    </div>
+    <div class="right-side">
+        <h4>List :</h4>
+        <div class="scroll">
+            {% for i in list %}
+            <div class="items">
+                <b>{{i.title}}</b>
+                <i>{{i.description}}</i>
+                <a class="delete" href="delete/{{i.id}}" name='num' method='GET'><b>X</b></a>
+                <u>{{i.time}}</u>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
