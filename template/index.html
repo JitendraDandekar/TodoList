@@ -17,14 +17,18 @@
         .left-side{
             float: left;
             width: 30%;
+        }
+        .input-data{
             border-radius: 1ch;
-            background-color: aqua;
+            background-color:red;
+            padding-bottom: 5px;
         }
         .right-side{
+            color: seashell;
             float: right; 
             width: 68%;
             border-radius: 1ch;
-            background-color: aqua;
+            background-color:green;
             height: 500px;
         }
         #title{
@@ -59,7 +63,7 @@
         }
         u{
             float: right;
-            margin-right: 20px;
+            padding-right: 30px;
         }
         .items{
             background-color:red;
@@ -68,19 +72,25 @@
             border-radius: 10px;
         }
         .scroll{
+            scrollbar-color: grey;
             overflow-y: scroll;
             height: 400px;
             width: 98%;
         }
-        #saveditem{
-            color: red;
+        #msgprompt{
+            color: white;
             text-align: center;
-            margin-left: 165px;
+            width: 100%;
+            background-color: rebeccapurple;
+            border-radius: 10ch;
+            margin-top: 5px;
         }
         .delete{
             float: right;
-            margin: 1.1px;
+            color: red;
             text-decoration: none;
+            background-color: snow;
+            border-radius: 10ch;
         }
     </style>
 </head>
@@ -91,18 +101,22 @@
         </header>
     </div>
     <div class="left-side">
-        <form method="POST" action="">
-            {% csrf_token %}
-        <input type="text" name="title" id="title" placeholder="Title">
-        <input type="text" name="description" id="description" placeholder="Description">
-        <input type="text" name="time" id="time" placeholder="Time">
-        <button type="submit" style="margin-left:160px">Save</button>
-        </form>
-        <span id='saveditem'>
-        {% for msg in messages %}
-        {{msg}}
-        {% endfor %}
-        </span>
+        <div class="input-data">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" name="title" id="title" placeholder="Title">
+                <input type="text" name="description" id="description" placeholder="Description">
+                <input type="text" name="time" id="time" placeholder="Time">
+                <button type="submit" style="margin-left:160px">Save</button>
+            </form>
+        </div>
+        <div id='msgprompt'>
+            <span>
+            {% for msg in messages %}
+            {{msg}}
+            {% endfor %}
+            </span>
+        </div>
     </div>
     <div class="right-side">
         <h4>List :</h4>
