@@ -93,6 +93,7 @@
             border-radius: 10ch;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="heading">
@@ -106,16 +107,14 @@
                 {% csrf_token %}
                 <input type="text" name="title" id="title" placeholder="Title">
                 <input type="text" name="description" id="description" placeholder="Description">
-                <input type="text" name="time" id="time" placeholder="Time">
-                <button type="submit" style="margin-left:160px">Save</button>
+                <input type="time" name="time" id="time" placeholder="Time">
+                <button type="submit" id="btn" style="margin-left:160px">Save</button>
             </form>
         </div>
         <div id='msgprompt'>
-            <span>
             {% for msg in messages %}
-            {{msg}}
+            <span id='msg' value='{{msg}}'>{{msg}}</span>
             {% endfor %}
-            </span>
         </div>
     </div>
     <div class="right-side">
@@ -132,4 +131,14 @@
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function(){
+        var a = $("#msg").val();
+        if( typeof a != undefined){
+            setTimeout(function(){
+                $("#msgprompt").hide();
+            }, 700);
+        }
+    });
+</script>
 </html>
