@@ -91,6 +91,7 @@
             text-decoration: none;
             background-color: snow;
             border-radius: 10ch;
+            cursor: pointer;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -108,7 +109,7 @@
                 <input type="text" name="title" id="title" placeholder="Title">
                 <input type="text" name="description" id="description" placeholder="Description">
                 <input type="time" name="time" id="time" placeholder="Time">
-                <button type="submit" id="btn" style="margin-left:160px">Save</button>
+                <button type="submit" id="btn" style="margin-left:160px; cursor:pointer;">Save</button>
             </form>
         </div>
         <div id='msgprompt'>
@@ -124,7 +125,15 @@
             <div class="items">
                 <b>{{i.title}}</b>
                 <i>{{i.description}}</i>
-                <a class="delete" href="delete/{{i.id}}" name='num' method='GET'><b>X</b></a>
+                <a class="delete"  onclick="conf()"><b>X</b></a>
+                <script>
+                    function conf(){
+                        con = confirm("Do you want to delete?");
+                        if(con==true){
+                            document.location.href = "delete/{{i.id}}";
+                        };
+                    }
+                </script>
                 <u>{{i.time}}</u>
             </div>
             {% endfor %}
