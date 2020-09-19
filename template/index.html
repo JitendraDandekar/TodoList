@@ -106,9 +106,9 @@
         <div class="input-data">
             <form method="POST" action="">
                 {% csrf_token %}
-                <input type="text" name="title" id="title" placeholder="Title">
-                <input type="text" name="description" id="description" placeholder="Description">
-                <input type="time" name="time" id="time" placeholder="Time">
+                <input type="text" name="title" id="title" placeholder="Title" required>
+                <input type="text" name="description" id="description" placeholder="Description" required>
+                <input type="time" name="time" id="time" required>
                 <button type="submit" id="btn" style="margin-left:160px; cursor:pointer;">Save</button>
             </form>
         </div>
@@ -147,7 +147,7 @@
             setTimeout(function(){
                 $("#msgprompt").hide();
             }, 700);
-        }
+        } 
     });
 </script>
 </html>
